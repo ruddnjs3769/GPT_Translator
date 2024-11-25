@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Page Translator with GPT",
+  "version": "1.0",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Translate this page",
+    "default_popup": "options.html"
+  },
+  "host_permissions": ["<all_urls>"]
+}
