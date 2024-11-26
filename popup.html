@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>AI Translator</title>
+  <style>
+    body {
+      width: 200px;
+      padding: 10px;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>AI Translator</h1>
+  <select id="modelSelect">
+    <option value="claude_3.5_sonnet">Claude 3.5 Sonnet</option>
+    <option value="gpt_4o">GPT 4o</option>
+    <!-- Add more models as needed -->
+  </select>
+  <input type="text" id="apiKey" placeholder="Enter your API key">
+  <button id="saveApiKey">Save API Key</button>
+  <script src="popup.js"></script>
+</body>
+
+</html>

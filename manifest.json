@@ -1,14 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Page Translator with GPT",
+  "name": "AI Translator",
   "version": "1.0",
-  "permissions": ["activeTab", "scripting", "storage"],
+  "description": "Translate web pages using AI models.",
+  "permissions": ["activeTab", "storage", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Translate this page",
-    "default_popup": "options.html"
-  },
-  "host_permissions": ["<all_urls>"]
+    "default_popup": "popup.html"
+  }
 }
