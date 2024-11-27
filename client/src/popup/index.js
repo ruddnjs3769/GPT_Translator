@@ -76,8 +76,60 @@ class TranslatorUI {
   }
 
   async validateApiKey(apiKey, model) {
-    // API 키 검증 로직 (이전과 동일)
-    return true; // 임시 반환
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      if (model === "claude_3.5_sonnet") {
+        headers["x-api-key"] = apiKey;
+        headers["anthropic-version"] = "2023-06-01";
+        headers["anthropic-dangerous-direct-browser-access"] = "true";
+
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({
+            model: "claude-3-sonnet-20240229",
+            max_tokens: 10,
+            messages: [
+              {
+                role: "user",
+                content: "테스트 메시지입니다.",
+              },
+            ],
+          }),
+        });
+
+        return response.ok;
+      } else if (model === "gpt_4o") {
+        headers["Authorization"] = `Bearer ${apiKey}`;
+
+        const response = await fetch(
+          "https://api.openai.com/v1/chat/completions",
+          {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+              model: "gpt-4",
+              messages: [
+                {
+                  role: "user",
+                  content: "테스트 메시지입니다.",
+                },
+              ],
+            }),
+          }
+        );
+
+        return response.ok;
+      }
+
+      return false;
+    } catch (error) {
+      console.error("API key validation error:", error);
+      return false;
+    }
   }
 
   async handleToggle(event) {
@@ -98,7 +150,7 @@ class TranslatorUI {
         // 2. content script가 없다면 주입
         await chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          files: ["content.js"],
+          files: ["src/content/index.js"],
         });
       }
 
