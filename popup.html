@@ -3,33 +3,53 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>AI Translator</title>
-  <style>
-    body {
-      width: 200px;
-      padding: 10px;
-    }
-
-    input {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    button {
-      width: 100%;
-    }
-  </style>
+  <title>Smart Translator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>AI Translator</h1>
-  <select id="modelSelect">
-    <option value="claude_3.5_sonnet">Claude 3.5 Sonnet</option>
-    <option value="gpt_4o">GPT 4o</option>
-    <!-- Add more models as needed -->
-  </select>
-  <input type="text" id="apiKey" placeholder="Enter your API key">
-  <button id="saveApiKey">Save API Key</button>
+  <h1>Smart Translator</h1>
+
+  <div class="container">
+    <label for="model-select">Select Model</label>
+    <select name="models" id="model-select">
+      <option value="gpt_4o">GPT-4</option>
+      <option value="claude_3.5_sonnet">Claude 3.5</option>
+    </select>
+  </div>
+
+  <div class="container">
+    <label for="api-key">API Key:</label>
+    <input type="password" id="api-key" placeholder="Enter API Key">
+    <button id="verify-api-key">
+      <span>Verify</span>
+      <div class="loading"></div>
+    </button>
+  </div>
+
+  <div class="container">
+    <label for="target-lang">Target Language:</label>
+    <select id="target-lang">
+      <option value="ko">한국어</option>
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+
+  <div id="toggle-container" style="display: none;">
+    <label for="translation-toggle">Translation</label>
+    <label class="switch">
+      <input type="checkbox" id="translation-toggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div id="message"></div>
+
   <script src="popup.js"></script>
 </body>
 
